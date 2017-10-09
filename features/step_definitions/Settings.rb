@@ -1,6 +1,7 @@
 require 'cucumber'
 require 'watir'
 require 'webdriver-user-agent'
+require 'watir-scroll'
 
 Given(/^open the site$/) do
 
@@ -15,8 +16,8 @@ Given(/^open the site$/) do
 
 if @br == :chrome
    desktopbrowser
-   @browser.goto 'https://storefront:loreal1@dev25-emea-loreal.demandware.net/s/ysl-au/en_AU/home'
-   @browser.goto 'https://dev25-emea-loreal.demandware.net/s/ysl-au/en_AU/home'
+   @browser.goto 'https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_FR/client/account-create'
+
    end
 if @br == :ff
   desktopbrowser
@@ -51,12 +52,13 @@ end
 
       #Generate random pass/email
   o = [('a'..'z')].map { |i| i.to_a }.flatten
+a=[('0'..'9')].map { |i| i.to_a }.flatten
   @name1 = (0...5).map { o[rand(o.length)] }.join
   @name2 = (0...5).map { o[rand(o.length)] }.join
   @email = (0...5).map { o[rand(o.length)] }.join
   @pass = (0...10).map { o[rand(o.length)] }.join
   @pass1 = (0...10).map { o[rand(o.length)] }.join
-
+@phone = (0...8).map { a[rand(a.length)] }.join
   @address_name = (0...5).map { o[rand(o.length)] }.join
 end
 
