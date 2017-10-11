@@ -6,7 +6,7 @@ Feature: Check create account functionality
   Scenario Outline:  Create account B2B school
     When user is on Create account page
     Then Select Professional option
-    Then Select civility from the dropdown B2B
+    Then Select civility from the dropdown-list B2B <greeting>
     And Fill ds in the first name field for B2B <firstname>
     And Fill ds in the last name field for B2B <lastname>
     And Fill in with a valid email address for B2B
@@ -19,7 +19,7 @@ Feature: Check create account functionality
     When Click on continue button for B2B
     Then Select the salon owner profession <ownew> from the dropdown B2B
     Then user press on an activity checkbox for B2B
-    Then user selects country from VAT drop-down for B2B
+    Then user selects country <country> from VAT drop-down for B2B
     Then user fills the VAT field for B2B with <vat>
     And user fills the Société field with some data <data>
     Then typing address in the address suggestion field for B2B <address>
@@ -31,5 +31,5 @@ And click on validate button for B2B
 
 
     Examples:
-      |firstname|lastname|address|ownew|vat        |data    |address2|
-      |Ole      |Boiko   |7  rue |école|00000000190|sometext|3 rue|
+      |greeting   |firstname|lastname|address|ownew|country|vat        |data    |address2|
+      |     M.    |Ole      |Boiko   |7  rue |école|France |00000000190|sometext|3 rue|

@@ -6,10 +6,9 @@ Then(/^Select Private person option$/) do
   @browser.element(:id, 'b2c-register').click
 end
 
-Then(/^Select civility from the dropdown$/) do
-  @browser.execute_script('javascript:window.scrollBy(0,350)')
-  @browser.element(:id, 'dwfrm_profile_customer_b2c_salutationSelectBoxIt').click
-  @browser.element(:link_text, 'M.').click
+Then(/^Select civility from the dropdown (.*)$/) do |greeting|
+  @browser.element(:id, 'dwfrm_profile_customer_b2c_salutationSelectBoxIt').wait_until_present.click
+  @browser.element(:link_text, (greeting)).click
 end
 
 And(/^Fill in the first name field (.*)$/) do |firstname|
@@ -54,9 +53,11 @@ Then(/^Start typing address in the address suggestion field (.*)$/) do |address|
 end
 
 
-And(/^Click on Create account button  button$/) do
-  @browser.execute_script('javascript:window.scrollBy(0,550)')
-  @browser.element(:class, 'valider-b2c').wait_until_present.click
+And(/^Click on Create account button button$/) do
+  @browser.execute_script('arguments[0].scrollIntoView();', @browser.element(:class, 'valider-b2c'))
+  @browser.execute_script('javascript:window.scrollBy(0,-100)')
+  sleep (1)
+ @browser.element(:class, 'valider-b2c').wait_until_present.click
   @browser.element(:class, 'account-title-landing').wait_until_present.text.include? 'Bienvenue'+ ' ' + @first_name
 end
 
@@ -85,10 +86,10 @@ When(/^Click on add a company checkbox$/) do
   @browser.element(:xpath, ".//*[@id='shippingbillingForm']/div/div[1]/div[3]/div[12]/div[1]/span/label").click
 end
 
-Then(/^Select France from the country dropdown$/) do
+Then(/^Select county (.*) from the country dropdown$/) do |country|
   @browser.execute_script('javascript:window.scrollBy(0,350)')
   @browser.element(:id, 'dwfrm_profile_customer_b2c_addressbilling_vatCountrySelectBoxIt').click
-  @browser.element(:id, 'dwfrm_profile_customer_b2c_addressbilling_vatCountrySelectBoxItOptions').element(:link_text, 'France').click
+  @browser.element(:id, 'dwfrm_profile_customer_b2c_addressbilling_vatCountrySelectBoxItOptions').element(:link_text, (country)).click
 end
 
 And(/^Fill in the VAT field with a valid number (.*)$/) do |vat|
@@ -110,10 +111,10 @@ Then(/^Select Professional option$/) do
   @browser.element(:id, 'b2b-register').click
 end
 
-Then(/^Select civility from the dropdown B2B$/) do
-  @browser.execute_script('javascript:window.scrollBy(0,350)')
-  @browser.element(:id, 'dwfrm_profile_customer_b2b_generalfields_personalData_salutationSelectBoxItText').click
-  @browser.element(:link_text, 'M.').click
+Then(/^Select civility from the dropdown\-list B2B (.*)$/) do |greeting|
+  sleep (1)
+  @browser.element(:id, 'dwfrm_profile_customer_b2b_generalfields_personalData_salutationSelectBoxItText').wait_until_present.click
+  @browser.element(:link_text, (greeting)).click
 end
 
 And(/^Fill ds in the first name field for B2B (.*)$/) do |firstname|
@@ -174,9 +175,9 @@ Then(/^user press on an activity checkbox for B2B$/) do
   @browser.element(:xpath, ".//*[@id='step3']/div/div[2]/div/div/div[4]/span/label").click
 end
 
-Then(/^user selects country from VAT drop\-down for B2B$/) do
+Then(/^user selects country (.*) from VAT drop\-down for B2B$/) do |country|
   @browser.element(:id, 'dwfrm_profile_customer_b2b_company_vatCountrySelectBoxItText').click
-  @browser.element(:id, 'dwfrm_profile_customer_b2b_company_vatCountrySelectBoxItOptions').element(:link_text, 'France').click
+  @browser.element(:id, 'dwfrm_profile_customer_b2b_company_vatCountrySelectBoxItOptions').element(:link_text, (country)).click
 end
 
 Then(/^user fills the VAT field for B2B with (.*)$/) do |vat|
@@ -213,6 +214,7 @@ Then(/^Start typing address2 for B2B in the address suggestion field (.*)$/) do 
  end
 
 And(/^click on validate button for B2B$/) do
+  sleep(2)
   @browser.element(:class, "step-validate").wait_until_present.click
   @browser.element(:class, "confirmation-msg-b2b").wait_until_present
 
@@ -225,4 +227,17 @@ end
 
 And(/^fill the phone number landline number for B2B first address$/) do
   @browser.text_field(:id, 'dwfrm_profile_customer_b2b_generalfields_addressData_address_phone').set('01'+@phone)
+end
+
+
+And(/^user fills valid birthday for B2C (.*),(.*),(.*)$/) do |month, date , year|
+  @browser.text_field(:id, "dwfrm_profile_customer_b2c_birthDay").wait_until_present.set(month)
+  @browser.text_field(:id, "dwfrm_profile_customer_b2c_birthMonth").wait_until_present.set(date)
+  @browser.text_field(:id, "dwfrm_profile_customer_b2c_birthYear").wait_until_present.set(year)
+end
+
+And(/^user fills valid birthday for B2B (.*), (.*), (.*)$/) do |date, month, year|
+  @browser.text_field(:id, "dwfrm_profile_customer_b2b_generalfields_personalData_birthDay").set(date)
+  @browser.text_field(:id, "dwfrm_profile_customer_b2b_generalfields_personalData_birthMonth").set(month)
+  @browser.text_field(:id, "dwfrm_profile_customer_b2b_generalfields_personalData_birthYear").set(year)
 end

@@ -6,7 +6,7 @@ Feature: Check create account functionality
   Scenario Outline:  Create account B2B Salone employee
     When user is on Create account page
     Then Select Professional option
-    Then Select civility from the dropdown B2B
+    Then Select civility from the dropdown-list B2B <greeting>
     And Fill ds in the first name field for B2B <firstname>
     And Fill ds in the last name field for B2B <lastname>
     And Fill in with a valid email address for B2B
@@ -28,5 +28,5 @@ Feature: Check create account functionality
 
 
     Examples:
-      |firstname|lastname|address|ownew                            |docpath    |address2|
-      |Ole      |Boiko   |7  rue |salarié(e) dans un salon/institut|C:\\asd.png|3 rue|
+      |greeting   |firstname|lastname|address|ownew                            |docpath    |address2|
+      |     M.    |Ole      |Boiko   |7  rue |salarié(e) dans un salon/institut|C:\\asd.png|3 rue|

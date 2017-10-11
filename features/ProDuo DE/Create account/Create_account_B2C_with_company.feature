@@ -11,6 +11,7 @@ Feature: Check create account functionality
     And Fill in the last name field <lastname>
     And Fill in with a valid email address
     And Confirm the email address
+    And user fills valid birthday for B2C <date>, <month>, <year>
     Then user fills valid landline number
     Then Fill in with a phone number
     And Check the newsletter subscription checkbox
@@ -25,9 +26,9 @@ Feature: Check create account functionality
     And Fill in the VAT field with a valid number <vat>
     When Click on use a different shipping address checkbox
     Then Start typing address2 in the address  suggestion field <address2>
-    And Click on Create account button  button
+    And Click on Create account button button
 
 
     Examples:
-      |greeting|firstname|lastname|address|country|address2|vat|
-      |M.      |Ole      |Boiko   |7  rue |France |3 rue  |00000000190|
+      |greeting|firstname|lastname|date|month|year|address|country     |address2|vat|
+      |Frau    |Ole      |Boiko   |21  |05   |1991|7  rue |Deutschland |3 rue   |111111125|

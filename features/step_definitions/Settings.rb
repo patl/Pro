@@ -2,26 +2,28 @@ require 'cucumber'
 require 'watir'
 #require 'webdriver-user-agent'
 require 'watir-scroll'
+require 'watigiri'
 
 Given(/^open the site$/) do
 
-@br = :chrome
+@br = :firefox
+@link =  "https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_DE/de_DE/client/account-create"
 
- def desktopbrowser
-  @browser = Watir::Browser.new @br
-  @browser.cookies.clear
-  @browser.window.maximize
- end
+  def desktopbrowser
+    @browser = Watir::Browser.new @br
+    @browser.cookies.clear
+    @browser.window.maximize
+  end
 
 
 if @br == :chrome
-   desktopbrowser
-   @browser.goto 'https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_FR/client/account-create'
+  desktopbrowser
+  @browser.goto @link
 
    end
-if @br == :ff
+if @br == :firefox
   desktopbrowser
-  @browser.goto 'https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_FR/client/account-create'
+  @browser.goto @link
   alert = @browser.alert.exists?
    if alert == true
      @browser.alert.ok
@@ -34,19 +36,19 @@ end
 if @br == :ie
   desktopbrowser
   IO.popen("C:\\Users\\ogboi\\OneDrive\\Documents\\GitHub\\LORA\\features\\support\\authwibdow.exe")
-  @browser.goto 'https://dev25-emea-loreal.demandware.net/s/ysl-au/en_AU/home'
+  @browser.goto @link
 end
 
   if @br == :edge
     IO.popen("C:\\Users\\ogboi\\OneDrive\\Documents\\GitHub\\LORA\\features\\support\\authwibdow.exe")
-    @browser.goto 'https://dev25-emea-loreal.demandware.net/s/ysl-au/en_AU/home'
+    @browser.goto @link
   end
 
 if @br == :mobile
   driver = Webdriver::UserAgent.driver(browser: :chrome, agent: :iphone6splus, orientation: :portrait)
   @browser = Watir::Browser.new driver
-  @browser.goto 'https://storefront:loreal1@dev25-emea-loreal.demandware.net/s/ysl-au/en_AU/home'
-  @browser.goto 'https://dev25-emea-loreal.demandware.net/s/ysl-au/en_AU/home'
+  @browser.goto @link
+  @browser.goto @link
 end
 
 

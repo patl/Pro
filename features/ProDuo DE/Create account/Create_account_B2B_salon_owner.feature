@@ -9,6 +9,7 @@ Feature: Check create account functionality
     Then Select civility from the dropdown-list B2B <greeting>
     And Fill ds in the first name field for B2B <firstname>
     And Fill ds in the last name field for B2B <lastname>
+    And user fills valid birthday for B2B <date>, <month>, <year>
     And Fill in with a valid email address for B2B
     And Confirm the email address for B2B
     Then Fill in with a phone number for B2B
@@ -31,5 +32,5 @@ And click on validate button for B2B
 
 
     Examples:
-     |greeting |firstname|lastname|address|ownew                           |country|vat        |data    |saloneName   |address2|
-     |     M.  |Ole      |Boiko   |7  rue |propriétaire d’un salon/Institut|France|00000000190|sometext|BestSalonEver|3 rue|
+     |greeting |firstname|lastname|date|month|year|address   |ownew                         |country    |vat      |data    |saloneName   |address2 |
+     |Frau     |Ole      |Boiko   |21  |11   |1991|strasse 7 |Inhaber eines Salons/Instituts|Deutschland|111111125|sometext|BestSalonEver|strasse 3|
