@@ -28,5 +28,5 @@ Feature: Check create account functionality
 
 
     Examples:
-      |firstname|lastname|address|ownew                            |docpath                           |address2|
-      |Ole      |Boiko   |7  rue |salarié(e) dans un salon/institut|C:\\Users\\ogboi\\Desktop\\asd.png|3 rue|
+      |firstname|lastname|address|ownew                            |docpath    |address2|
+      |Ole      |Boiko   |7  rue |salarié(e) dans un salon/institut|C:\\asd.png|3 rue|

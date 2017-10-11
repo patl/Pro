@@ -1,11 +1,11 @@
 require 'cucumber'
 require 'watir'
-require 'webdriver-user-agent'
+#require 'webdriver-user-agent'
 require 'watir-scroll'
 
 Given(/^open the site$/) do
 
-@br = :ff
+@br = :chrome
 
  def desktopbrowser
   @browser = Watir::Browser.new @br

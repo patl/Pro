@@ -56,8 +56,8 @@ end
 
 And(/^Click on Create account button  button$/) do
   @browser.execute_script('javascript:window.scrollBy(0,550)')
-  @browser.element(:class, 'valider-b2c').click
-  @browser.element(:class, 'account-title-landing').text.include? 'Bienvenue'+ ' ' + @first_name
+  @browser.element(:class, 'valider-b2c').wait_until_present.click
+  @browser.element(:class, 'account-title-landing').wait_until_present.text.include? 'Bienvenue'+ ' ' + @first_name
 end
 
 Then(/^user fills valid landline number$/) do
@@ -195,7 +195,7 @@ end
 Then(/^typing address in the address suggestion field for B2B (.*)$/) do |address|
   @browser.text_field(:id, "dwfrm_profile_customer_b2b_generalfields_addressQas_intuitiveAddress").set(address)
   @browser.element(:class, 'address-suggestions').wait_until_present
-  @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').click
+  @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').wait_until_present.click
   @browser.execute_script('javascript:window.scrollBy(0,450)')
 end
 
@@ -205,15 +205,16 @@ When(/^press on use a different shipping address checkbox for B2B$/) do
 end
 
 Then(/^Start typing address2 for B2B in the address suggestion field (.*)$/) do |address2|
+  #@browser.execute_script('javascript:window.scrollBy(0,150)')
   @browser.execute_script('arguments[0].scrollIntoView();',  @browser.element(:id,"divShippingAddress").text_field(:id, "dwfrm_profile_customer_b2b_generalfields_shipping_qas_intuitiveAddress"))
   @browser.element(:id,"divShippingAddress").text_field(:id, "dwfrm_profile_customer_b2b_generalfields_shipping_qas_intuitiveAddress").wait_until_present.set(address2)
-  @browser.element(:class, 'address-suggestions').wait_until
-  @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').click
+  @browser.element(:class, 'address-suggestions').wait_until_present
+  @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').wait_until_present.click
  end
 
 And(/^click on validate button for B2B$/) do
-  @browser.element(:class, "step-validate").click
-  @browser.element(:class, "confirmation-msg-b2b").wait_until.visible?
+  @browser.element(:class, "step-validate").wait_until_present.click
+  @browser.element(:class, "confirmation-msg-b2b").wait_until_present
 
 end
 

@@ -29,4 +29,4 @@ Feature: Check create account functionality
 
     Examples:
       |firstname|lastname|address|ownew            |address2|docpath|
-      |Ole      |Boiko   |7  rue |salarié(e) ProDuo|3 rue   |C:\\Users\\ogboi\\Desktop\\asd.png|
+      |Ole      |Boiko   |7  rue |salarié(e) ProDuo|3 rue   |C:\\asd.png|
