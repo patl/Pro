@@ -3,7 +3,7 @@ Feature: Check create account functionality
     Given open the site
 
 
-  Scenario Outline:  Create account B2C simple
+  Scenario Outline:  Create account B2C With Company
     When user is on Create account page
     Then Select Private person option
     Then Select civility from the dropdown

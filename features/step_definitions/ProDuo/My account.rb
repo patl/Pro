@@ -48,7 +48,7 @@ When(/^Click on continue button$/) do
 end
 
 Then(/^Start typing address in the address suggestion field (.*)$/) do |address|
-  @browser.text_field(:id, 'dwfrm_profile_customer_b2c_qas_intuitiveAddress').set(address)
+  @browser.text_field(:id, 'dwfrm_profile_customer_b2c_qas_intuitiveAddress').wait_until_present.set(address)
   @browser.element(:class, 'address-suggestions').wait_until_present
   @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').click
 end
@@ -66,14 +66,15 @@ Then(/^user fills valid landline number$/) do
 end
 
 And(/^Check the newsletter subscription checkbox$/) do
+  @browser.execute_script('javascript:window.scrollBy(0,250)')
   @browser.element(:xpath, ".//*[@id='personalForm']/div[13]/div[1]/div[1]/span/label").click
 end
 
 And(/^Select a checkbox from the preferences$/) do
-  @browser.element(:xpath, ".//*[@id='personalForm']/div[13]/div[2]/div[1]/span/label").click
-  @browser.element(:xpath, ".//*[@id='personalForm']/div[13]/div[2]/div[2]/span/label").click
-  @browser.element(:xpath, ".//*[@id='personalForm']/div[13]/div[2]/div[4]/span/label").click
-  @browser.element(:xpath, ".//*[@id='personalForm']/div[13]/div[2]/div[3]/span/label").click
+  @browser.element(:xpath, ".//*[@id='personalForm']/div[13]/div[2]/div[1]/span/label").wait_until_present.click
+  @browser.element(:xpath, ".//*[@id='personalForm']/div[13]/div[2]/div[2]/span/label").wait_until_present.click
+  @browser.element(:xpath, ".//*[@id='personalForm']/div[13]/div[2]/div[4]/span/label").wait_until_present.click
+  @browser.element(:xpath, ".//*[@id='personalForm']/div[13]/div[2]/div[3]/span/label").wait_until_present.click
 end
 
 Then(/^Check the SMS checkbox$/) do
@@ -100,7 +101,7 @@ When(/^Click on use a different shipping address checkbox$/) do
 end
 
 Then(/^Start typing address2 in the address  suggestion field (.*)$/) do |address2|
-  @browser.element(:class,"shipping-address").text_field(:id, 'dwfrm_profile_customer_b2c_qas_intuitiveAddress').set(address2)
+  @browser.element(:class,"shipping-address").text_field(:id, 'dwfrm_profile_customer_b2c_qas_intuitiveAddress').wait_until_present.set(address2)
   @browser.element(:class, 'address-suggestions').wait_until_present
   @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').click
 end
@@ -159,10 +160,12 @@ end
 
 
 Then(/^Select the salon owner profession (.*) from the dropdown B2B$/) do |ownew|
-  @browser.execute_script('javascript:window.scrollBy(0,350)')
+  sleep(2)
+  @owner = ownew
+  @browser.execute_script('javascript:window.scrollBy(0,150)')
   @browser.element(:id, "dwfrm_profile_customer_b2b_generalfields_professionalData_customerTypeSelectBoxIt").click
-  @browser.element(:link_text, (ownew)).click
-end
+  @browser.link(:text,@owner).click
+ end
 
 Then(/^user press on an activity checkbox for B2B$/) do
   @browser.element(:xpath, ".//*[@id='step3']/div/div[2]/div/div/div[1]/span/label").click
@@ -182,5 +185,43 @@ end
 
 
 And(/^user fills the Société field with some data (.*)$/) do |data|
-  @browser.text_filed(:id, 'dwfrm_profile_customer_b2b_generalfields_professionalData_organization').set(data)
+  @browser.text_field(:id, 'dwfrm_profile_customer_b2b_generalfields_professionalData_organization').set(data)
+end
+
+And(/^user fills with some text (.*) in the name of the salon field for B2B$/) do |saloneName|
+  @browser.text_field(:id, "dwfrm_profile_customer_b2b_generalfields_professionalData_salonName").set(saloneName)
+end
+
+Then(/^typing address in the address suggestion field for B2B (.*)$/) do |address|
+  @browser.text_field(:id, "dwfrm_profile_customer_b2b_generalfields_addressQas_intuitiveAddress").set(address)
+  @browser.element(:class, 'address-suggestions').wait_until_present
+  @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').click
+  @browser.execute_script('javascript:window.scrollBy(0,450)')
+end
+
+
+When(/^press on use a different shipping address checkbox for B2B$/) do
+  @browser.element(:xpath, ".//*[@id='addressArea_address']/div[16]/div[1]/span/label").click
+end
+
+Then(/^Start typing address2 for B2B in the address suggestion field (.*)$/) do |address2|
+  @browser.execute_script('arguments[0].scrollIntoView();',  @browser.element(:id,"divShippingAddress").text_field(:id, "dwfrm_profile_customer_b2b_generalfields_shipping_qas_intuitiveAddress"))
+  @browser.element(:id,"divShippingAddress").text_field(:id, "dwfrm_profile_customer_b2b_generalfields_shipping_qas_intuitiveAddress").wait_until_present.set(address2)
+  @browser.element(:class, 'address-suggestions').wait_until
+  @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').click
+ end
+
+And(/^click on validate button for B2B$/) do
+  @browser.element(:class, "step-validate").click
+  @browser.element(:class, "confirmation-msg-b2b").wait_until.visible?
+
+end
+
+
+Then(/^user uploads document (.*) the proof section B2B Salon employee$/) do |docpath|
+  @browser.file_field(:id, 'dwfrm_profile_customer_b2b_employee_proof').set(docpath)
+end
+
+And(/^fill the phone number landline number for B2B first address$/) do
+  @browser.text_field(:id, 'dwfrm_profile_customer_b2b_generalfields_addressData_address_phone').set('01'+@phone)
 end

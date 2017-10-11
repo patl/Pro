@@ -5,7 +5,7 @@ require 'watir-scroll'
 
 Given(/^open the site$/) do
 
-@br = :chrome
+@br = :ff
 
  def desktopbrowser
   @browser = Watir::Browser.new @br
@@ -21,7 +21,7 @@ if @br == :chrome
    end
 if @br == :ff
   desktopbrowser
-  @browser.goto 'https://storefront:loreal1@dev25-emea-loreal.demandware.net/s/ysl-au/en_AU/home'
+  @browser.goto 'https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_FR/client/account-create'
   alert = @browser.alert.exists?
    if alert == true
      @browser.alert.ok

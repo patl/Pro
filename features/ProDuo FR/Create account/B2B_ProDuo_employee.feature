@@ -3,7 +3,7 @@ Feature: Check create account functionality
     Given open the site
 
 
-  Scenario Outline:  Create account B2B Salon owner
+  Scenario Outline:  Create account B2B student
     When user is on Create account page
     Then Select Professional option
     Then Select civility from the dropdown B2B
@@ -19,17 +19,14 @@ Feature: Check create account functionality
     When Click on continue button for B2B
     Then Select the salon owner profession <ownew> from the dropdown B2B
     Then user press on an activity checkbox for B2B
-    Then user selects country from VAT drop-down for B2B
-    Then user fills the VAT field for B2B with <vat>
-    And user fills the Société field with some data <data>
-    And user fills with some text <saloneName> in the name of the salon field for B2B
+    And user uploads document <docpath> the proof section B2B Salon employee
     Then typing address in the address suggestion field for B2B <address>
     When press on use a different shipping address checkbox for B2B
     Then Start typing address2 for B2B in the address suggestion field <address2>
 
-And click on validate button for B2B
+    And click on validate button for B2B
 
 
     Examples:
-      |firstname|lastname|address|ownew                           |vat        |data    |saloneName   |address2|
-      |Ole      |Boiko   |7  rue |propriétaire d’un salon/Institut|00000000190|sometext|BestSalonEver|3 rue|
+      |firstname|lastname|address|ownew            |address2|docpath|
+      |Ole      |Boiko   |7  rue |salarié(e) ProDuo|3 rue   |C:\\Users\\ogboi\\Desktop\\asd.png|
