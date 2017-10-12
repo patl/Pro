@@ -6,7 +6,7 @@ require 'watir-scroll'
 
 Given(/^open the site$/) do
 
-@br = :firefox
+@br = :chrome
 @link =  "https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_FR/client/account-create"
 
   def desktopbrowser
@@ -30,7 +30,6 @@ if @br == :firefox
    else
      p 'no alert'
    end
-  sleep (10)
 end
 
 if @br == :ie

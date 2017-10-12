@@ -48,7 +48,6 @@ end
 
 Then(/^Start typing address in the address suggestion field (.*)$/) do |address|
   @browser.text_field(:id, 'dwfrm_profile_customer_b2c_qas_intuitiveAddress').wait_until_present.set(address)
-  ad
   @browser.element(:class, 'address-suggestions').wait_until_present.text.include? (address[/(.*)\s/,1])
   @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').click
 end
@@ -195,8 +194,10 @@ And(/^user fills with some text (.*) in the name of the salon field for B2B$/) d
 end
 
 Then(/^typing address in the address suggestion field for B2B (.*)$/) do |address|
-  @browser.text_field(:id, "dwfrm_profile_customer_b2b_generalfields_addressQas_intuitiveAddress").set(address)
-  @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').wait_until_present.text.include? (address[/(.*)\s/,1])
+  @browser.text_field(:id, "dwfrm_profile_customer_b2b_generalfields_addressQas_intuitiveAddress").wait_until_present.set(address)
+  sleep (1)
+  @browser.wait_until {@browser.element(:class, 'address-suggestions').element(:class, 'suggestion').text.include? address[/(.*)\s/,1]}
+  #@browser.element(:class, 'address-suggestions').element(:class, 'suggestion').wait_until_text.include? (address[/(.*)\s/,1])
   @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').wait_until_present.click
   @browser.execute_script('javascript:window.scrollBy(0,450)')
 end
