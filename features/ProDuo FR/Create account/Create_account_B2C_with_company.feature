@@ -25,7 +25,7 @@ Feature: Check create account functionality
     And Fill in the VAT field with a valid number <vat>
     When Click on use a different shipping address checkbox
     Then Start typing address2 in the address  suggestion field <address2>
-    And Click on Create account button  button
+    And Click on Create account button button
 
 
     Examples:

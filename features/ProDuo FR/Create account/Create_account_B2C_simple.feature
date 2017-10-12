@@ -16,7 +16,7 @@ Feature: Check create account functionality
   Then Confirm the password
   When Click on continue button
   Then Start typing address in the address suggestion field <address>
-  And Click on Create account button  button
+  And Click on Create account button button
 
 
     Examples:

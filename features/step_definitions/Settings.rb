@@ -2,7 +2,7 @@ require 'cucumber'
 require 'watir'
 #require 'webdriver-user-agent'
 require 'watir-scroll'
-require 'watigiri'
+
 
 Given(/^open the site$/) do
 
