@@ -31,5 +31,5 @@ Feature: Check create account functionality
 
 
     Examples:
-    |greeting  |firstname|lastname|address|ownew                   |country|vat        |data     |address2|
-    |     M.   |Ole      |Boiko   |7  rue |Esthéticienne à domicile|France |00000000190|sometext|3 rue|
+    |greeting  |firstname|lastname|address|ownew                   |country|vat        |data    |address2|
+    |     M.   |Ole      |Boiko   |7  rue |Esthéticienne à domicile|France |00000000190|sometext|3 rue |

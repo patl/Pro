@@ -7,7 +7,7 @@ require 'watigiri'
 Given(/^open the site$/) do
 
 @br = :firefox
-@link =  "https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_DE/de_DE/client/account-create"
+@link =  "https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_FR/client/account-create"
 
   def desktopbrowser
     @browser = Watir::Browser.new @br

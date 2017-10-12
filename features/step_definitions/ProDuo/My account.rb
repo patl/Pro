@@ -208,7 +208,9 @@ end
 Then(/^Start typing address2 for B2B in the address suggestion field (.*)$/) do |address2|
   #@browser.execute_script('javascript:window.scrollBy(0,150)')
   @browser.execute_script('arguments[0].scrollIntoView();',  @browser.element(:id,"divShippingAddress").text_field(:id, "dwfrm_profile_customer_b2b_generalfields_shipping_qas_intuitiveAddress"))
+  @browser.execute_script('javascript:window.scrollBy(0,-150)')
   @browser.element(:id,"divShippingAddress").text_field(:id, "dwfrm_profile_customer_b2b_generalfields_shipping_qas_intuitiveAddress").wait_until_present.set(address2)
+  sleep (1)
   @browser.element(:class, 'address-suggestions').wait_until_present
   @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').wait_until_present.click
  end
