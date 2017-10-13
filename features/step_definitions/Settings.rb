@@ -7,8 +7,8 @@ require 'watir-scroll'
 Given(/^open the site$/) do
 
 @br = :chrome
-@link =  "https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_FR/client/account-create"
-
+#@link =  "https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_FR/client/account-create"
+@link =  "https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_DE/de_DE/client/account-create"
   def desktopbrowser
     @browser = Watir::Browser.new @br
     @browser.cookies.clear
@@ -59,7 +59,7 @@ a=[('0'..'9')].map { |i| i.to_a }.flatten
   @email = (0...5).map { o[rand(o.length)] }.join
   @pass = (0...10).map { o[rand(o.length)] }.join
   @pass1 = (0...10).map { o[rand(o.length)] }.join
-@phone = (0...8).map { a[rand(a.length)] }.join
+  @phone = (0...8).map { a[rand(a.length)] }.join
   @address_name = (0...5).map { o[rand(o.length)] }.join
 end
 

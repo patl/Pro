@@ -22,4 +22,4 @@ Feature: Check create account functionality for B2C simple DE
 
     Examples:
     |greeting |firstname|lastname|date|month|year|address  |
-    |Frau     |Ole      |Boiko   |25  |08   |1991|strasse 7|
+    |Frau     |Ole      |Boiko   |25  |08   |1991|s 7|

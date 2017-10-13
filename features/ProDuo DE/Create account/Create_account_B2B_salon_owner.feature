@@ -33,4 +33,4 @@ And click on validate button for B2B
 
     Examples:
      |greeting |firstname|lastname|date|month|year|address   |ownew                         |country    |vat      |data    |saloneName   |address2 |
-     |Frau     |Ole      |Boiko   |21  |11   |1991|strasse 7 |Inhaber eines Salons/Instituts|Deutschland|111111125|sometext|BestSalonEver|strasse 3|
+     |Frau     |Ole      |Boiko   |21  |11   |1991|s 7 |Inhaber eines Salons/Instituts|Deutschland|111111125|sometext|BestSalonEver|s 3|

@@ -30,4 +30,4 @@ Feature: Check create account functionality
 
     Examples:
       |greeting   |firstname|lastname|date|month|year|address  |ownew                 |address2 |docpath|
-      |Frau       |Ole      |Boiko   |21  |11   |1991|strasse 7|nicht aktive Fachkraft|strasse 3|C:\\asd.png|
+      |Frau       |Ole      |Boiko   |21  |11   |1991|s 7|nicht aktive Fachkraft|s 3|C:\\asd.png|

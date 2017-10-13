@@ -48,7 +48,7 @@ end
 
 Then(/^Start typing address in the address suggestion field (.*)$/) do |address|
   @browser.text_field(:id, 'dwfrm_profile_customer_b2c_qas_intuitiveAddress').wait_until_present.set(address)
-  @browser.element(:class, 'address-suggestions').wait_until_present.text.include? (address[/(.*)\s/,1])
+  @browser.element(:class, 'address-suggestions').wait_until_present.text.include? (address[/(.*)\s/,1].upcase)
   @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').click
 end
 
@@ -195,8 +195,7 @@ end
 
 Then(/^typing address in the address suggestion field for B2B (.*)$/) do |address|
   @browser.text_field(:id, "dwfrm_profile_customer_b2b_generalfields_addressQas_intuitiveAddress").wait_until_present.set(address)
-  sleep (1)
-  @browser.wait_until {@browser.element(:class, 'address-suggestions').element(:class, 'suggestion').text.include? address[/(.*)\s/,1]}
+  @browser.wait_until {@browser.element(:class, 'address-suggestions').element(:class, 'suggestion').text.include? (address[/(.*)\s/,1].upcase)}
   #@browser.element(:class, 'address-suggestions').element(:class, 'suggestion').wait_until_text.include? (address[/(.*)\s/,1])
   @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').wait_until_present.click
   @browser.execute_script('javascript:window.scrollBy(0,450)')
@@ -217,7 +216,9 @@ Then(/^Start typing address2 for B2B in the address suggestion field (.*)$/) do 
  end
 
 And(/^click on validate button for B2B$/) do
-  sleep(2)
+  sleep (1)
+  @browser.execute_script('arguments[0].scrollIntoView();',  @browser.element(:class, "step-validate"))
+  @browser.execute_script('javascript:window.scrollBy(0,-100)')
   @browser.element(:class, "step-validate").wait_until_present.click
   @browser.element(:class, "confirmation-msg-b2b").wait_until_present
 
