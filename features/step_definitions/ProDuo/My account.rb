@@ -48,7 +48,9 @@ end
 
 Then(/^Start typing address in the address suggestion field (.*)$/) do |address|
   @browser.text_field(:id, 'dwfrm_profile_customer_b2c_qas_intuitiveAddress').wait_until_present.set(address)
+  sleep (2)
   @browser.element(:class, 'address-suggestions').wait_until_present.text.include? (address[/(.*)\s/,1].upcase)
+  sleep (2)
   @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').click
 end
 
@@ -163,7 +165,8 @@ end
 Then(/^Select the salon owner profession (.*) from the dropdown B2B$/) do |ownew|
   sleep(2)
   @owner = ownew
-  @browser.execute_script('javascript:window.scrollBy(0,150)')
+  sleep (3)
+  @browser.execute_script('javascript:window.scrollBy(0,-150)')
   @browser.element(:id, "dwfrm_profile_customer_b2b_generalfields_professionalData_customerTypeSelectBoxIt").click
   @browser.link(:text,@owner).click
  end

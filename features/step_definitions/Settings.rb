@@ -2,13 +2,14 @@ require 'cucumber'
 require 'watir'
 #require 'webdriver-user-agent'
 require 'watir-scroll'
+require 'parallel_tests'
 
 
 Given(/^open the site$/) do
 
 @br = :chrome
-#@link =  "https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_FR/client/account-create"
-@link =  "https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_DE/de_DE/client/account-create"
+@link = "https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_FR/client/account-create"
+#@link =  "https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_DE/account-erstellen"
   def desktopbrowser
     @browser = Watir::Browser.new @br
     @browser.cookies.clear

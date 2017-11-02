@@ -33,4 +33,4 @@ Feature: Check create account functionality
 
     Examples:
     |greeting  |firstname|lastname|date|month|year|address  |ownew               |country     |vat      |data    |address2 |
-    |Frau      |Ole      |Boiko   |21  |11   |1991|s 7|Mobile Kosmetiker/in|Deutschland |111111125|sometext|s 3|
+    |Frau      |Ole      |Boiko   |21  |11   |1991|s 7      |Mobile Kosmetiker/in|Deutschland |111111125|sometext|s 3|
