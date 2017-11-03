@@ -1,6 +1,5 @@
 require 'cucumber'
 require 'watir'
-#require 'webdriver-user-agent'
 require 'watir-scroll'
 require 'parallel_tests'
 

@@ -7,8 +7,9 @@ Then(/^Select Private person option$/) do
 end
 
 Then(/^Select civility from the dropdown (.*)$/) do |greeting|
-  @browser.element(:id, 'dwfrm_profile_customer_b2c_salutationSelectBoxIt').wait_until_present.click
-  @browser.element(:link_text, (greeting)).click
+  sleep (1)
+     @browser.element(:id, 'dwfrm_profile_customer_b2c_salutationSelectBoxIt').wait_until_present.click
+    @browser.element(:link_text, (greeting)).click
 end
 
 And(/^Fill in the first name field (.*)$/) do |firstname|
@@ -58,7 +59,7 @@ end
 And(/^Click on Create account button button$/) do
   @browser.execute_script('arguments[0].scrollIntoView();', @browser.element(:class, 'valider-b2c'))
   @browser.execute_script('javascript:window.scrollBy(0,-100)')
-  sleep (1)
+  sleep (2)
  @browser.element(:class, 'valider-b2c').wait_until_present.click
   @browser.element(:class, 'account-title-landing').wait_until_present.text.include? 'Bienvenue'+ ' ' + @first_name
 end
@@ -163,7 +164,6 @@ end
 
 
 Then(/^Select the salon owner profession (.*) from the dropdown B2B$/) do |ownew|
-  sleep(2)
   @owner = ownew
   sleep (3)
   @browser.execute_script('javascript:window.scrollBy(0,-150)')
@@ -197,29 +197,29 @@ And(/^user fills with some text (.*) in the name of the salon field for B2B$/) d
 end
 
 Then(/^typing address in the address suggestion field for B2B (.*)$/) do |address|
-  @browser.text_field(:id, "dwfrm_profile_customer_b2b_generalfields_addressQas_intuitiveAddress").wait_until_present.set(address)
+  @browser.text_field(:id, "dwfrm_profile_customer_b2c_qas_intuitiveAddress").wait_until_present.set(address)
   @browser.wait_until {@browser.element(:class, 'address-suggestions').element(:class, 'suggestion').text.include? (address[/(.*)\s/,1].upcase)}
   #@browser.element(:class, 'address-suggestions').element(:class, 'suggestion').wait_until_text.include? (address[/(.*)\s/,1])
   @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').wait_until_present.click
-  @browser.execute_script('javascript:window.scrollBy(0,450)')
+  @browser.execute_script('javascript:window.scrollBy(0,470)')
 end
 
 
 When(/^press on use a different shipping address checkbox for B2B$/) do
-  @browser.element(:xpath, ".//*[@id='addressArea_address']/div[16]/div[1]/span/label").click
+  @browser.element(:xpath, ".//*[@id='addressArea_address']/div[16]/div[1]/span/label").wait_until_present.click
 end
 
 Then(/^Start typing address2 for B2B in the address suggestion field (.*)$/) do |address2|
   #@browser.execute_script('javascript:window.scrollBy(0,150)')
-  @browser.execute_script('arguments[0].scrollIntoView();',  @browser.element(:id,"divShippingAddress").text_field(:id, "dwfrm_profile_customer_b2b_generalfields_shipping_qas_intuitiveAddress"))
+  @browser.execute_script('arguments[0].scrollIntoView();',  @browser.element(:id,"divShippingAddress").text_field(:id, "dwfrm_profile_customer_b2c_qas_intuitiveAddress"))
   @browser.execute_script('javascript:window.scrollBy(0,-150)')
-  @browser.element(:id,"divShippingAddress").text_field(:id, "dwfrm_profile_customer_b2b_generalfields_shipping_qas_intuitiveAddress").wait_until_present.set(address2)
+  @browser.element(:id, 'divShippingAddress').text_field(:id, "dwfrm_profile_customer_b2c_qas_intuitiveAddress").wait_until_present.set(address2)
   @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').wait_until_present.text.include? (address2[/(.*)\s/,1])
   @browser.element(:class, 'address-suggestions').element(:class, 'suggestion').wait_until_present.click
  end
 
 And(/^click on validate button for B2B$/) do
-  sleep (1)
+  sleep (2)
   @browser.execute_script('arguments[0].scrollIntoView();',  @browser.element(:class, "step-validate"))
   @browser.execute_script('javascript:window.scrollBy(0,-100)')
   @browser.element(:class, "step-validate").wait_until_present.click
