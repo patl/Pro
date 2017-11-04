@@ -1,2 +1,2 @@
-# LORA
-automation for LORA based projects
+# ProDuo
+automation for ProDuo project
