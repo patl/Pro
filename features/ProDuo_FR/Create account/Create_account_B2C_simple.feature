@@ -4,9 +4,9 @@ Feature: Check create account functionality
 
 
   Scenario Outline:  Create account B2C simple
-    When user is on Create account page
+  When user is on Create account page
   Then Select Private person option
-    Then Select civility from the dropdown <greeting>
+  Then Select civility from the dropdown <greeting>
   And Fill in the first name field <firstname>
   And Fill in the last name field <lastname>
   And Fill in with a valid email address
