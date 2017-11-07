@@ -8,7 +8,7 @@ Given(/^open the site$/) do
 
 @br = :chrome
 #@link = "https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_FR/client/account-create"
-#@link =  "https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_DE/account-erstellen"
+@link =  "https://storefront:produo2016@staging-emea-produo.demandware.net/s/ProDuo_DE/account-erstellen"
   def desktopbrowser
     @browser = Watir::Browser.new @br
     @browser.cookies.clear
